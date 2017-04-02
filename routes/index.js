@@ -3,6 +3,7 @@ var router = express.Router();
 var crypto = require('crypto');
 
 var User = require('../models/user.js');
+var Post = require('../models/post.js');
 
 function checkLogin(req, res, next) {
 	if (!req.session.user) {
@@ -25,17 +26,13 @@ router.get('/', function(req, res, next) {
 	res.render('index', { title: '首页' });
 });
 
-router.post('/post', function(req, res, next) {
-	res.render('index', { title: '首页' });
-});
-
 // registration
 router.get('/reg', checkNotLogin);
 router.get('/reg', function(req, res, next) {
 	res.render('reg', { title: '用户注册' });
 });
 
-router.get('/reg', checkNotLogin);
+router.post('/reg', checkNotLogin);
 router.post('/reg', function(req, res, next) {
 	// check password input
 	if (req.body['password-repeat'] != req.body['password']) {
@@ -79,7 +76,7 @@ router.get('/login', function(req, res, next) {
 	res.render('login', { title: '用户登入' });
 });
 
-router.get('/login', checkNotLogin);
+router.post('/login', checkNotLogin);
 router.post('/login', function(req, res, next) {
 	var md5 = crypto.createHash('md5');
 	var password = md5.update(req.body.password).digest('base64');
@@ -105,6 +102,23 @@ router.get('/logout', function(req, res, next) {
 	req.session.user = null;
 	req.flash('success', '登出成功');
 	res.redirect('/');
+});
+
+// post
+router.post('/post', checkLogin);
+router.post('/post', function(req, res, next) {
+	var currentUser = req.session.user;
+	var post = new Post(currentUser.name, req.body.post);
+
+	post.save(function(err) {
+		if (err) {
+			req.flash('error', err);
+			return res.redirect('/');
+		}
+
+		req.flash('success', '发表成功');
+		res.redirect('/u/' + currentUser.name);
+	});
 });
 
 module.exports = router;
