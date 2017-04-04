@@ -14,7 +14,10 @@ var settings = require('./settings');
 var index = require('./routes/index');
 var users = require('./routes/users');
 
-
+// setup log stream
+var fs = require('fs');
+var accessLogfile = fs.createWriteStream('access.log', {flags: 'a'});
+var errorLogfile = fs.createWriteStream('error.log', {flags: 'a'});
 
 var app = express();
 
@@ -25,7 +28,6 @@ app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -64,7 +66,18 @@ app.use(function(req, res, next) {
   next(err);
 });
 
-// error handler
+// log
+app.use(logger('dev'));
+// uncomment this if need to write a log file
+//app.use(logger({stream: accessLogfile}));
+
+// error handler begin
+app.use(function(err, req, res, next) {
+	var meta = '[' + new Date() + ']' + req.url + '\n';
+	errorLogfile.write(meta + err.stack + '\n');
+	next(err);
+});
+
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
@@ -74,5 +87,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+// error handler end
 
 module.exports = app;

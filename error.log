@@ -1,0 +1,18 @@
+[Tue Apr 04 2017 10:42:33 GMT+0800 (CST)]/
+Error: an error
+    at /Users/zzhang/Workspace/Node/TestProject/NodeDevGuide/NodeWeibo/microblog/routes/index.js:26:8
+    at Layer.handle [as handle_request] (/Users/zzhang/Workspace/Node/TestProject/NodeDevGuide/NodeWeibo/microblog/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/zzhang/Workspace/Node/TestProject/NodeDevGuide/NodeWeibo/microblog/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/Users/zzhang/Workspace/Node/TestProject/NodeDevGuide/NodeWeibo/microblog/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/Users/zzhang/Workspace/Node/TestProject/NodeDevGuide/NodeWeibo/microblog/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/zzhang/Workspace/Node/TestProject/NodeDevGuide/NodeWeibo/microblog/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/Users/zzhang/Workspace/Node/TestProject/NodeDevGuide/NodeWeibo/microblog/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zzhang/Workspace/Node/TestProject/NodeDevGuide/NodeWeibo/microblog/node_modules/express/lib/router/index.js:275:10)
+    at Function.handle (/Users/zzhang/Workspace/Node/TestProject/NodeDevGuide/NodeWeibo/microblog/node_modules/express/lib/router/index.js:174:3)
+    at router (/Users/zzhang/Workspace/Node/TestProject/NodeDevGuide/NodeWeibo/microblog/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/zzhang/Workspace/Node/TestProject/NodeDevGuide/NodeWeibo/microblog/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zzhang/Workspace/Node/TestProject/NodeDevGuide/NodeWeibo/microblog/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zzhang/Workspace/Node/TestProject/NodeDevGuide/NodeWeibo/microblog/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zzhang/Workspace/Node/TestProject/NodeDevGuide/NodeWeibo/microblog/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zzhang/Workspace/Node/TestProject/NodeDevGuide/NodeWeibo/microblog/node_modules/express/lib/router/index.js:275:10)
+    at /Users/zzhang/Workspace/Node/TestProject/NodeDevGuide/NodeWeibo/microblog/app.js:56:2
