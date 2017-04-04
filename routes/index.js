@@ -23,7 +23,13 @@ function checkNotLogin(req, res, next) {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-	res.render('index', { title: '首页' });
+	Post.get(null, function(err, posts) {
+		if (err) {
+			posts = [];
+		}
+
+		res.render('index', {title: '首页', posts: posts});
+	});
 });
 
 // registration
